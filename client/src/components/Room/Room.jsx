@@ -3,12 +3,15 @@ import RoomCard from "./RoomCard";
 import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Heading from "../Shared/Heading/Heading";
+import Loader from "../../Loader/Loader";
 const Room = () => {
   const [rooms, setRooms] = useState([]);
-  console.log(rooms);
+  const [loading, setLoading] = useState(true);
+  // console.log(rooms);
   const [params, setParams] = useSearchParams();
   const category = params.get("category");
   useEffect(() => {
+    setLoading(true);
     fetch("/rooms.json")
       .then((res) => res.json())
       .then((data) => {
@@ -20,8 +23,10 @@ const Room = () => {
         } else {
           setRooms(data);
         }
+        setLoading(false);
       });
   }, [category]);
+  if (loading) return <Loader />;
   return (
     <Container>
       {rooms.length == 0 ? (

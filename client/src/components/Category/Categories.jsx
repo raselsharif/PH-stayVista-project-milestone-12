@@ -10,7 +10,7 @@ const Categories = () => {
   const category = params.get("category");
   return (
     <Container>
-      <div className="flex gap-4 overflow-x-auto pb-4">
+      <div className="flex justify-center gap-4 overflow-x-auto pb-4">
         {categoriesData.map((item) => (
           <CategoryCard
             key={item.label}
