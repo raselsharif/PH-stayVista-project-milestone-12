@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import qs from "query-string";
-const CategoryCard = ({ label, icon: Icon }) => {
+const CategoryCard = ({ label, icon: Icon, selected }) => {
+  // console.log(selected);
   const [params, setParams] = useSearchParams();
   //   console.log(params);
   const navigate = useNavigate();
@@ -9,20 +10,22 @@ const CategoryCard = ({ label, icon: Icon }) => {
     // console.log(currentQuery);
     if (params) {
       currentQuery = qs.parse(params.toString());
-      const updatedQuery = { ...currentQuery, category: label };
-      const url = qs.stringifyUrl({
-        url: "/",
-        query: updatedQuery,
-      });
-      navigate(url);
-      //   console.log(url);
     }
+    const updatedQuery = { ...currentQuery, category: label };
+    const url = qs.stringifyUrl({
+      url: "/",
+      query: updatedQuery,
+    });
+    navigate(url);
+    //   console.log(url);
   };
   params.get("category");
   return (
     <div
       onClick={handleSelected}
-      className="p-2 flex justify-center items-center flex-col border-b cursor-pointer"
+      className={`p-2 flex justify-center items-center flex-col cursor-pointer ${
+        selected ? "border-b-2 border-black" : "border-b-2"
+      }`}
     >
       <Icon size={32} />
       <p>{label}</p>
