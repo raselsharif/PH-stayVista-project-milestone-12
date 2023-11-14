@@ -23,8 +23,8 @@ const CategoryCard = ({ label, icon: Icon, selected }) => {
   return (
     <div
       onClick={handleSelected}
-      className={`p-2 flex justify-center items-center flex-col cursor-pointer ${
-        selected ? "border-b-2 border-black" : "border-b-2"
+      className={`p-2 flex justify-center items-center flex-col cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 ${
+        selected ? "border-b-2 border-black " : "border-b-2 l "
       }`}
     >
       <Icon size={32} />
